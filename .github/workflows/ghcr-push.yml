@@ -23,6 +23,6 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: tedder/dynip:latest
+          tags: ghcr.io/tedder/dynip:latest
           #tags: ${{ steps.meta.outputs.tags }}
           #labels: ${{ steps.meta.outputs.labels }}
