@@ -8,10 +8,9 @@ while true; do
   MYNAME=${MYNAME:-home}
   OLDIP=$(dig @${WHOIS_HOST} +short ${MYNAME}.${MYDOMAIN})
   MYIP=$(/usr/bin/curl --silent https://api.ipify.org)
-  echo "ips: $MYIP == $OLDIP"
   if [ "$MYIP" == "$OLDIP" ]; then
-    echo "match."
-    exit 0
+    #echo "match."
+    break
   fi
 
   echo "IP for $MYNAME changing (from $OLDIP to $MYIP)."
