@@ -1,6 +1,7 @@
 #!/bin/bash -e
 
 while true; do
+  echo "loop start"
 
   if [ -n "$HEALTHCHECK_URL" ]; then
     curl --silent $HEALTHCHECK_URL
@@ -9,6 +10,7 @@ while true; do
   MYNAME=${MYNAME:-home}
   OLDIP=$(dig @${WHOIS_HOST} +short ${MYNAME}.${MYDOMAIN})
   MYIP=$(/usr/bin/curl --silent https://api.ipify.org)
+  echo "ips: $MYIP == $OLDIP"
   if [ "$MYIP" == "$OLDIP" ]; then
     #echo "match."
     exit 0
