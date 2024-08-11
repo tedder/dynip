@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash -exv
 
 while true; do
   if [ -n "$HEALTHCHECK_URL" ]; then
