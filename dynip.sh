@@ -9,8 +9,9 @@ while true; do
   OLDIP=$(dig @${WHOIS_HOST} +short ${MYNAME}.${MYDOMAIN})
   MYIP=$(/usr/bin/curl --silent https://api.ipify.org)
   if [ "$MYIP" == "$OLDIP" ]; then
-    #echo "match."
-    break
+    echo "match."
+    sleep 3600
+    continue
   fi
 
   echo "IP for $MYNAME changing (from $OLDIP to $MYIP)."
@@ -23,6 +24,5 @@ EOF
   IS_PENDING=`echo $RET | jq ".ChangeInfo.Status == \"PENDING\""`
   echo "$RET"
 
-  echo "loop done"
-  sleep 3600
+  echo "update done"
 done
