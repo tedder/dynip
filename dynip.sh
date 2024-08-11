@@ -1,5 +1,7 @@
 #!/bin/bash -exv
 
+/usr/bin/aws --version
+
 while true; do
   if [ -n "$HEALTHCHECK_URL" ]; then
     curl --silent -o /dev/null $HEALTHCHECK_URL
