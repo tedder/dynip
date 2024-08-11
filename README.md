@@ -2,9 +2,7 @@ Fairly simply dynip/dyndns script to update an AWS route53 entry.
 
 Don't forget to inject awscli credentials into it.
 
-VOLUME
-    - /home/ted/nuc87_compose/aws-credentials:/.aws/config
-
+## env vars
 ```
 MYNAME
 MYDOMAIN
