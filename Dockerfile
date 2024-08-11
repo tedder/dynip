@@ -1,4 +1,5 @@
-FROM alpine:latest
+FROM alpine:3.19
+# v3.20 fails with datetime issues in awscli
 
 RUN apk add --no-cache bash curl bind-tools jq aws-cli
 WORKDIR /opt/app
