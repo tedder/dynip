@@ -16,9 +16,7 @@ while true; do
 
   echo "IP for $MYNAME changing (from $OLDIP to $MYIP)."
 
-  read -d '' MYJSON <<EOF
-  { "Changes": [ { "Action": "UPSERT", "ResourceRecordSet": { "Name": "${MYNAME}.${MYDOMAIN}.", "Type": "A", "TTL": 600, "ResourceRecords": [{ "Value": "$MYIP" }] }}]}
-EOF
+  MYJSON="{ \"Changes\": [ { \"Action\": \"UPSERT\", \"ResourceRecordSet\": { \"Name\": \"${MYNAME}.${MYDOMAIN}.\", \"Type\": \"A\", \"TTL\": 600, \"ResourceRecords\": [{ \"Value\": \"$MYIP\" }] }}]}"
   echo "$MYJSON"
   /usr/bin/aws route53 change-resource-record-sets --hosted-zone-id ${HOSTED_ZONE_ID} --change-batch "$MYJSON"
 
