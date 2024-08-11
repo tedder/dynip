@@ -25,4 +25,7 @@ EOF
   echo "$RET"
 
   echo "update done"
+
+  # we need to sleep so we don't repeatedly try to fix this
+  sleep 300
 done
