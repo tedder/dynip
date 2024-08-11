@@ -4,7 +4,7 @@ while true; do
   echo "loop start"
 
   if [ -n "$HEALTHCHECK_URL" ]; then
-    curl --silent $HEALTHCHECK_URL
+    curl --silent -o /dev/null $HEALTHCHECK_URL
   fi
 
   MYNAME=${MYNAME:-home}
