@@ -15,7 +15,7 @@ WHOIS_HOST
 
 ```
   dynip:
-    build: ./dynip/
+    image: ghcr.io/tedder/dynip:latest
     restart: always
     volumes:
     - /foo/aws-credentials:/.aws/config
