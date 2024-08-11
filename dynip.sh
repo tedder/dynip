@@ -18,7 +18,7 @@ while true; do
 
   read -d '' MYJSON <<EOF
   { "Changes": [ { "Action": "UPSERT", "ResourceRecordSet": { "Name": "${MYNAME}.${MYDOMAIN}.", "Type": "A", "TTL": 600, "ResourceRecords": [{ "Value": "$MYIP" }] }}]}
-  EOF
+EOF
   echo "$MYJSON"
   RET=`/usr/bin/aws route53 change-resource-record-sets --hosted-zone-id ${HOSTED_ZONE_ID} --change-batch "$MYJSON"`
   IS_PENDING=`echo $RET | jq ".ChangeInfo.Status == \"PENDING\""`
