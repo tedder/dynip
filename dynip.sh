@@ -13,7 +13,7 @@ while true; do
   if [ "$MYIP" == "$OLDIP" ]; then
     echo "match."
     if [ -n "$PUSH_URL" ]; then
-      curl --silent -o /dev/null "$PUSH_URL"
+      curl --silent --fail --show-error "$PUSH_URL"
     fi
     sleep 3600
     continue
@@ -28,7 +28,7 @@ while true; do
   echo "update done"
 
   if [ -n "$PUSH_URL" ]; then
-    curl --silent -o /dev/null "$PUSH_URL"
+    curl --silent --fail --show-error "$PUSH_URL"
   fi
 
   # we need to sleep so we don't repeatedly try to fix this
