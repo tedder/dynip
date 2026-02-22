@@ -1,19 +1,17 @@
-#!/bin/bash -exv
+#!/bin/bash
 
 /usr/bin/aws --version
 
 while true; do
-  if [ -n "$HEALTHCHECK_URL" ]; then
-    curl --silent -o /dev/null $HEALTHCHECK_URL
-  fi
+  date
 
   MYNAME=${MYNAME:-home}
   OLDIP=$(dig @${WHOIS_HOST} +short ${MYNAME}.${MYDOMAIN})
   MYIP=$(/usr/bin/curl --silent https://api.ipify.org)
   if [ "$MYIP" == "$OLDIP" ]; then
     echo "match."
-    if [ -n "$PUSH_URL" ]; then
-      curl --silent --fail --show-error "${PUSH_URL}?status=up&msg=${MYIP}"
+    if [ -n "$HEALTHCHECK_URL" ]; then
+      curl --silent --fail --show-error "${HEALTHCHECK_URL}?status=up&msg=${MYIP}"
     fi
     sleep 3600
     continue
@@ -27,8 +25,8 @@ while true; do
 
   echo "update done"
 
-  if [ -n "$PUSH_URL" ]; then
-    curl --silent --fail --show-error "${PUSH_URL}?status=up&msg=IP+changed%3A+${OLDIP}+to+${MYIP}"
+  if [ -n "$HEALTHCHECK_URL" ]; then
+    curl --silent --fail --show-error "${HEALTHCHECK_URL}?status=up&msg=IP+changed%3A+${OLDIP}+to+${MYIP}"
   fi
 
   # we need to sleep so we don't repeatedly try to fix this

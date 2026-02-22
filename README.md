@@ -10,8 +10,7 @@ Don't forget to inject awscli credentials into it.
 | `MYDOMAIN` | yes | Domain name | `mydomain.com` |
 | `HOSTED_ZONE_ID` | yes | Route 53 hosted zone ID | `ZXXXXXXXXXXXXX` |
 | `WHOIS_HOST` | yes | Authoritative NS to query for current DNS value | `NS-382.AWSDNS-47.COM` |
-| `HEALTHCHECK_URL` | no | Pinged at the top of every loop, before the IP check | `https://hc-ping.com/your-uuid` |
-| `PUSH_URL` | no | Pinged after each check/update cycle (e.g. Uptime Kuma) | `http://kuma:3001/api/push/TOKEN` |
+| `HEALTHCHECK_URL` | no | Pinged after each check/update cycle (e.g. Uptime Kuma) | `http://kuma:3001/api/push/TOKEN` |
 
 ## docker-compose entry
 
@@ -23,8 +22,7 @@ Don't forget to inject awscli credentials into it.
     volumes:
     - /foo/aws-credentials:/.aws/credentials:ro
     environment:
-    - HEALTHCHECK_URL=https://hc-ping.com/asdf
-    - PUSH_URL=http://your-uptime-kuma:3001/api/push/TOKEN
+    - HEALTHCHECK_URL=http://your-uptime-kuma:3001/api/push/TOKEN
     - MYNAME=home
     - MYDOMAIN=mydomain.com
     - WHOIS_HOST=NS-987.AWSDNS-123.COM
