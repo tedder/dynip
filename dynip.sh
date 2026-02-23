@@ -11,6 +11,7 @@ while true; do
   if [ "$MYIP" == "$OLDIP" ]; then
     echo "match."
     if [ -n "$HEALTHCHECK_URL" ]; then
+      echo "Pushing healthcheck (no change): ${MYIP}"
       curl --silent --fail --show-error "${HEALTHCHECK_URL}?status=up&msg=${MYIP}"
     fi
     sleep 3600
@@ -26,6 +27,7 @@ while true; do
   echo "update done"
 
   if [ -n "$HEALTHCHECK_URL" ]; then
+    echo "Pushing healthcheck (IP changed): ${OLDIP} -> ${MYIP}"
     curl --silent --fail --show-error "${HEALTHCHECK_URL}?status=up&msg=IP+changed%3A+${OLDIP}+to+${MYIP}"
   fi
 
